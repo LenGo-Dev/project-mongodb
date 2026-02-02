@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 let dbContainer;
 
@@ -7,7 +8,7 @@ const getMongoClient = async () => {
     return dbContainer;
   }
 
-  const client = new MongoClient('mongodb://admin:supersecret@localhost:27017');
+  const client = new mongoose('mongodb://admin:supersecret@localhost:27017');
 
   await client.connect();
 
@@ -22,16 +23,6 @@ const getMongoClient = async () => {
   };
 
   dbContainer = { client, db, collections };
-
-  // db.collection('employees')
-  //   .find({ department: 'IT' })
-  //   .toArray()
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 
   return dbContainer;
 }
